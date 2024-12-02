@@ -27,11 +27,18 @@ else
     exit 1
 fi
 
-# Check if tables are empty
+# Check if tables have any data
 echo "Checking if tables are empty..."
-TABLE_COUNT=$(docker-compose -f docker-compose.prod.yml exec -T postgres psql -U postgres -d library_management_prod -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='public';")
+TABLE_DATA_EXISTS=$(docker-compose -f docker-compose.prod.yml exec -T postgres psql -U postgres -p 5431 -d library_management_prod -t -c "\
+    SELECT EXISTS ( \
+        SELECT 1 FROM information_schema.tables t \
+        JOIN pg_stat_user_tables st ON t.table_name = st.relname \
+        WHERE t.table_schema = 'public' \
+        AND t.table_name != '_prisma_migrations' \
+        AND st.n_live_tup > 0 \
+    );")
 
-if [ "$TABLE_COUNT" -eq 0 ]; then
+if [ "$TABLE_DATA_EXISTS" = " f" ]; then
     echo "Tables are empty. Proceeding with seeding..."
     if docker-compose -f docker-compose.prod.yml exec -T backend yarn prisma db seed; then
         echo "Database seeded successfully"
@@ -40,7 +47,7 @@ if [ "$TABLE_COUNT" -eq 0 ]; then
         exit 1
     fi
 else
-    echo "Tables are not empty. Skipping seeding."
+    echo "Tables contain data. Skipping seeding."
 fi
 
 # Show logs

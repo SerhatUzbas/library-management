@@ -1,7 +1,7 @@
 import { User } from '@/lib/types'
 import UserService from '@/services/UserService'
 import { UserFilterType, useUserListStore } from '@/stores/UserListStore'
-import { Grid, Stack, Container, Text, Flex, Box } from '@mantine/core'
+import { Grid, Stack, Container, Text, Flex, Box, Center } from '@mantine/core'
 import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import AddButton from 'components/Buttons/AddButton'
@@ -44,14 +44,20 @@ const Users = () => {
 						</Text>
 						<AddButton onClick={() => userHandler.open()}>Add User</AddButton>
 					</Flex>
-					<CTextInputNew maw={240} placeholder='Search by name' value={name} onChange={(e) => handleChange('name')(e.target.value)} />
-					<Grid>
-						{data?.data?.data?.users?.map((user: User) => (
-							<Grid.Col key={user?.id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
-								<UserItem id={user?.id} name={user?.name} pastBorrows={user?.pastBorrows?.length || 0} currentBorrows={user?.currentBorrows?.length || 0} />
-							</Grid.Col>
-						))}
-					</Grid>
+					<CTextInputNew placeholder='Search by name' value={name} onChange={(e) => handleChange('name')(e.target.value)} />
+					{data?.data?.data?.users?.length > 0 ? (
+						<Grid>
+							{data?.data?.data?.users?.map((user: User) => (
+								<Grid.Col key={user?.id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+									<UserItem id={user?.id} name={user?.name} pastBorrows={user?.pastBorrows?.length || 0} currentBorrows={user?.currentBorrows?.length || 0} />
+								</Grid.Col>
+							))}
+						</Grid>
+					) : (
+						<Center>
+							<Text>No users found</Text>
+						</Center>
+					)}
 					<CPagination total={data?.data?.data?.totalPages} value={page} onChange={(value) => updateFilter('page', value)} mx='auto' />
 				</Stack>
 				<UserCreate opened={isAddUserModalOpen} onClose={userHandler.close} />
