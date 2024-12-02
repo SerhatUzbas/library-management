@@ -24,6 +24,14 @@
 
    This script will build all Docker images, run migrations, seed the database, and start the application containers.
 
+   Frontend: http://localhost:4000
+   Backend: http://localhost:8001
+   Postgres: http://localhost:5431
+
+   If you want to change the ports, you can do that in the docker-compose.prod.yml file.
+
+   And do not forget that if you want to connect postgres from outside the container, you need to enter the port number 54321.
+
 ## Database Setup
 
 - The `schema.sql` file is included in the repository to set up the database schema. You can use it if you want to but I have provided a shell script to do that.
