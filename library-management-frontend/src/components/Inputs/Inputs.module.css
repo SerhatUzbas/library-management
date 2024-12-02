@@ -1,0 +1,63 @@
+.input {
+	background-color: #ffffff;
+	color: #161616;
+	font-weight: 800;
+	border-radius: 12px;
+	height: 54px;
+	border: 1px solid #e5e9ea;
+	&:focus {
+		border-color: #e5e9ea;
+	}
+	&::placeholder {
+		font-weight: 500;
+	}
+}
+
+.label {
+	color: #5e5e5e;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.selectDropdown {
+	border-radius: 12px;
+	padding: 5px 1px 5px 5px;
+}
+
+.selectOption {
+	border-radius: 12px;
+	padding: 15px 20px;
+	color: #161616;
+	font-size: 14px;
+	&:hover {
+		background-color: #e8e8e8;
+	}
+	&[aria-selected='true'] {
+		color: #dc3545;
+		font-weight: 700;
+	}
+}
+.selectOptionEmpty {
+	border-radius: 12px;
+	padding: 15px 20px;
+	color: #161616;
+	font-size: 14px;
+}
+
+.multiSelectInputList {
+	max-height: 44px;
+	overflow-y: auto;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	scrollbar-width: none;
+}
+
+.multiSelectInputField {
+	font-size: 12px;
+	margin-top: 10px;
+
+	&::placeholder {
+		font-weight: 500;
+	}
+}

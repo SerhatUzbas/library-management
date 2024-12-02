@@ -1,0 +1,5 @@
+.ktbTgaLogo {
+  @media (max-width: 62em) {
+    height: 50px;
+  }
+}
