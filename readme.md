@@ -32,6 +32,11 @@
 
    And do not forget that if you want to connect postgres from outside the container, you need to enter the port number 54321.
 
+   You can check the logs of the application with the following commands:
+   docker ps => get the container id
+   docker exec -it <container_id> sh
+   cd logs
+
 ## Technologies Used
 
 - **Backend:** Node.js, Prisma, Express , Postgres, Jest
