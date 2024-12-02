@@ -32,6 +32,11 @@
 
    And do not forget that if you want to connect postgres from outside the container, you need to enter the port number 54321.
 
+## Technologies Used
+
+- **Backend:** Node.js, Prisma, Express , Postgres, Jest
+- **Frontend:** React, Mantine, Tanstack Query, Zustand
+
 ## Database Setup
 
 - The `schema.sql` file is included in the repository to set up the database schema. You can use it if you want to but I have provided a shell script to do that.
