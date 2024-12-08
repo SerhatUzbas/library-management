@@ -7,7 +7,7 @@ export class BookRepository {
     this.prisma = new PrismaClient();
   }
 
-  async findAll(page: number = 1, limit: number = 10, filters: { title?: string; writer?: string; status?: BookStatus; categoryId?: number } = {}): Promise<{ books: Book[], total: number, totalPages: number }> {
+  async findAll(page: number = 1, limit: number = 12, filters: { title?: string; writer?: string; status?: BookStatus; categoryId?: number } = {}): Promise<{ books: Book[], total: number, totalPages: number }> {
     const skip = (page - 1) * limit;
 
     const where: Prisma.BookWhereInput = {

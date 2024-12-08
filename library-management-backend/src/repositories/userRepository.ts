@@ -4,7 +4,7 @@ import { IUser } from '../models/types';
 const prisma = new PrismaClient();
 
 export class UserRepository {
-  async findAll(page: number = 1, limit: number = 10, name?: string) {
+  async findAll(page: number = 1, limit: number = 12, name?: string) {
     const skip = (page - 1) * limit;
     
     const whereClause = {

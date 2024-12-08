@@ -29,7 +29,7 @@ const Books = () => {
 
 	const { data } = useQuery({
 		queryKey: ['books', { title: debouncedTitle, writer: debouncedWriter, status, categoryId, page }],
-		queryFn: () => BookService.getBooks({ title: debouncedTitle, writer: debouncedWriter, status, categoryId, page, limit: 10 }),
+		queryFn: () => BookService.getBooks({ title: debouncedTitle, writer: debouncedWriter, status, categoryId, page, limit: 12 }),
 		placeholderData: keepPreviousData,
 	})
 
